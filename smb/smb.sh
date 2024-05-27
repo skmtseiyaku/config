@@ -22,15 +22,23 @@ read INPUT
 case $INPUT in
     y|yes)
         echo -n "Username: "
-        read USERNAME
-        sudo useradd $USERNAME
-        sudo passwd $USERNAME
-        sudo pdbedit –a $USERNAME
+        while read USERNAME; do
+            sudo useradd $USERNAME
+            sudo passwd $USERNAME
+            sudo pdbedit -a "$USERNAME"
+            break
+        done
+        
 esac
 
 echo -n "Admin username: "
 read ADMINUSER
+#while read ADMINUSER; do
+#    sudo pdbedit -a "$ADMINUSER"
+#    break
+#done 
 
+mkdir $HOME/smb
 mkdir $HOME/smb/$SHARENAME
 
 sudo tee -a /etc/samba/smb.conf > /dev/null <<EOT
@@ -47,7 +55,7 @@ printcap name = /dev/null
 disable spoolss = yes
 show add printer wizard = no
 
-[FileExchange]
+[$SHARENAME]
 path = $HOME/smb/$SHARENAME
 max disk size = $SIZE
 public = yes
@@ -62,3 +70,4 @@ directory mask = 0775
 admin users = $ADMINUSER
 EOT
 
+exit
