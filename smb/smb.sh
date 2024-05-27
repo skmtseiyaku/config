@@ -11,6 +11,8 @@ echo | sudo tee /etc/samba/smb.conf
 #cp $BASEDIR/smb.conf /etc/samba/smb.conf
 sudo systemctl enable smb nmb wsdd
 
+SERVERNAME=$(uname -n)
+
 echo -n "Share name: "
 read SHARENAME
 
@@ -28,7 +30,7 @@ case $INPUT in
             sudo pdbedit -a "$USERNAME"
             break
         done
-        
+
 esac
 
 echo -n "Admin username: "
@@ -43,8 +45,8 @@ mkdir $HOME/smb/$SHARENAME
 
 sudo tee -a /etc/samba/smb.conf > /dev/null <<EOT
 [global]
-server string = FileExchange
-netbios name = FileExchange
+server string = $SERVERNAME
+netbios name = $SERVERNAME
 server smb encrypt = desired
 security = user
 passdb backend = tdbsam
