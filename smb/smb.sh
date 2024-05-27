@@ -12,11 +12,23 @@ echo | sudo tee /etc/samba/smb.conf
 
 #cp $BASEDIR/smb.conf /etc/samba/smb.conf
 sudo systemctl enable smb nmb wsdd
-echo "Creating a new user..."
+
 echo echo -n "Share name: "
 read SHARENAME
-echo -n "Username: "
-read USERNAME
+
+echo -n "Create a new user (y/N): "
+read INPUT
+case $INPUT in
+    y|yes)
+        echo -n "Username: "
+        read USERNAME
+        sudo useradd $USERNAME
+        sudo passwd $USERNAME
+        sudo pdbedit –a $USERNAME
+esac
+
+echo -n "Admin username: "
+read ADMINUSER
 
 mkdir $HOME/smb/$SHARENAME
 
@@ -36,6 +48,7 @@ show add printer wizard = no
 
 [FileExchange]
 path = $HOME/smb/$SHARENAME
+max disk size = 512000
 public = yes
 browseable = yes
 writable = yes
@@ -45,14 +58,6 @@ deadtime = 60
 max connections = 0
 create mask = 0775
 directory mask = 0775
-admin users = $USERNAME
+admin users = $ADMINUSER
 EOT
 
-useradd $USERNAME
-passwd $USERNAME
-pdbedit –a $USERNAME #新建Samba账户。 
-#pdbedit –x username：删除Samba账户。 
-#pdbedit –L：列出Samba用户列表，读取passdb.tdb数据库文件。 
-#pdbedit –Lv：列出Samba用户列表的详细信息。 
-#pdbedit –c “[D]” –u username：暂停该Samba用户的账号。 
-#pdbedit –c “[]” –u username：恢复该Samba用户的账号。
