@@ -16,6 +16,9 @@ sudo systemctl enable smb nmb wsdd
 echo echo -n "Share name: "
 read SHARENAME
 
+echo echo -n "Size (MB): "
+read SIZE
+
 echo -n "Create a new user (y/N): "
 read INPUT
 case $INPUT in
@@ -48,7 +51,7 @@ show add printer wizard = no
 
 [FileExchange]
 path = $HOME/smb/$SHARENAME
-max disk size = 512000
+max disk size = $SIZE
 public = yes
 browseable = yes
 writable = yes
