@@ -3,8 +3,8 @@ source $HOME/.bash_profile
 
 
 sudo pacman -Syu git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-sudo pacman -Syu nano vim git htop networkmanager wpa-supplicant dialog dosfstools\
-    ntfs-3g base-devel linux-headers openssh aria2 curl wget htop neofetch cowsay zsh gcc clang tmux
+sudo pacman -Syu nano vim git htop networkmanager iwd wpa-supplicant base-devel gcc zsh clang tmux python dosfstools\
+    ntfs-3g linux-headers openssh aria2 curl wget htop neofetch cowsay dialog 
 sudo yay -S tty-clock-git
 
 echo -n "Install KDE (y/N)?"
@@ -15,6 +15,7 @@ do
         y)
             sudo pacman -Syu sddm plasma sddm-kcm dolphin konsole krfb code firefox network-manager-applet\
                 mesa lib32-mesa  mesa-utils
+            sudo systemctl sddm
             #pacman -Syu krdp #(kde-unstable)
             break
             ;;
@@ -56,4 +57,4 @@ do
   esac
 done
 
-
+sudo systemctl enable NetworkManager sshd iwd
