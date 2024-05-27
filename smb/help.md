@@ -1,3 +1,4 @@
+# SMB Configuration
 ```
 passdb backend = tdbsam
 ```
@@ -19,4 +20,7 @@ pdbedit –c "[D]" –u username #暂停该Samba用户的账号。
 pdbedit –c "[]" –u username #恢复该Samba用户的账号。
 ```
 
-re: https://handerfly.github.io/运维/2019/08/29/samba/
+
+# References
+https://handerfly.github.io/运维/2019/08/29/samba/
+https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html
