@@ -3,8 +3,6 @@
 #configure ip first
 SCRIPT=$(readlink -f "$0")
 BASEDIR=$(dirname "$SCRIPT")
-mkdir $HOME/.local/bin
-
 
 sudo yay -S samba avahi wsdd
 sudo touch /etc/samba/smb.conf
@@ -13,10 +11,10 @@ echo | sudo tee /etc/samba/smb.conf
 #cp $BASEDIR/smb.conf /etc/samba/smb.conf
 sudo systemctl enable smb nmb wsdd
 
-echo echo -n "Share name: "
+echo -n "Share name: "
 read SHARENAME
 
-echo echo -n "Size (MB): "
+echo -n "Size (MB): "
 read SIZE
 
 echo -n "Create a new user (y/N): "
