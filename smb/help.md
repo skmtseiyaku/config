@@ -23,4 +23,5 @@ pdbedit –c "[]" –u username #恢复该Samba用户的账号。
 
 # References
 https://handerfly.github.io/运维/2019/08/29/samba/
+
 https://www.samba.org/samba/docs/current/man-html/smb.conf.5.html
