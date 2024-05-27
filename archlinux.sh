@@ -5,9 +5,9 @@ echo export PATH="${PATH}:$HOME/.local/bin" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 
 sudo pacman -Syu git base-devel && git clone https://aur.archlinux.org/yay.git && cd yay && makepkg -si
-sudo pacman -Syu nano vim git htop networkmanager iwd base-devel gcc zsh clang tmux python dosfstools\
+sudo pacman -Syu sudo nano vim git htop networkmanager iwd base-devel gcc zsh clang tmux python dosfstools\
     ntfs-3g linux-headers openssh aria2 curl wget htop neofetch cowsay dialog 
-sudo yay -S tty-clock-git
+yay -S tty-clock-git
 
 echo -n "Install KDE (y/N)?"
 while :
@@ -60,3 +60,5 @@ do
 done
 
 sudo systemctl enable NetworkManager sshd iwd
+
+exit
