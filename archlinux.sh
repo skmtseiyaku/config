@@ -37,6 +37,22 @@ do
         n|N)
             break
   esac
+done
 
+echo -n "Install oh-my-zsh (y/N)?"
+while :
+do
+    read INPUT
+    case $INPUT in
+        y)
+            sh -c "$(curl -fsSL https://install.ohmyz.sh/)"
+
+            echo "Configure it manually!"
+            break
+            ;;
+        n|N)
+            break
+  esac
+done
 
 
