@@ -4,7 +4,7 @@
 SCRIPT=$(readlink -f "$0")
 BASEDIR=$(dirname "$SCRIPT")
 
-sudo yay -S samba avahi wsdd
+yay -S samba avahi wsdd
 sudo touch /etc/samba/smb.conf
 echo | sudo tee /etc/samba/smb.conf
 
