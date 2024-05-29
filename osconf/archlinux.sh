@@ -17,7 +17,7 @@ do
         y)
             sudo pacman -Syu sddm plasma sddm-kcm dolphin konsole krfb code firefox network-manager-applet\
                 mesa lib32-mesa  mesa-utils
-            sudo systemctl sddm
+            sudo systemctl enable sddm
             #pacman -Syu krdp #(kde-unstable)
             break
             ;;
